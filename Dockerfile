@@ -1,5 +1,5 @@
 
-# brutcoin compile docker image
+# britcoin compile docker image
 
 FROM ubuntu
 MAINTAINER plod <me@plod.tv>
@@ -27,15 +27,15 @@ RUN mkdir -p /usr/src/
 
 WORKDIR /usr/src
 
-RUN git clone https://github.com/greenmo000/britcoin3.0.git
+RUN git clone https://github.com/britcoin3/britcoin3.3.git
 
-WORKDIR /usr/src/britcoin3.0
+WORKDIR /usr/src/britcoin3.3
 
-RUN echo "#!/bin/bash\nTHE_PATH=/usr/src/britcoin3.0\ncd \$THE_PATH\n/usr/bin/qmake\ncd src/leveldb\n/usr/bin/make libleveldb.a libmemenv.a\ncd \$THE_PATH\n/usr/bin/make\n/bin/mv britcoin-qt /export" > buildBrit.sh
+RUN echo "#!/bin/bash\nTHE_PATH=/usr/src/britcoin3.3\ncd \$THE_PATH\n/usr/bin/qmake\ncd src/leveldb\n/usr/bin/make libleveldb.a libmemenv.a\ncd \$THE_PATH\n/usr/bin/make\n/bin/ls\n/bin/mv britcoin3.3* /export/britcoin-qt" > buildBrit.sh
 
 RUN chmod +x buildBrit.sh
 
 RUN mkdir /export
 
-ENTRYPOINT /usr/src/britcoin3.0/buildBrit.sh
+ENTRYPOINT /usr/src/britcoin3.3/buildBrit.sh
 #ENTRYPOINT /bin/bash
